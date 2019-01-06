@@ -1,0 +1,6 @@
+/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/bin/Debug/TetrisConsole.exe
+/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/bin/Debug/TetrisConsole.pdb
+/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/obj/x86/Debug/TetrisConsole.csprojAssemblyReference.cache
+/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/obj/x86/Debug/TetrisConsole.csproj.CoreCompileInputs.cache
+/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/obj/x86/Debug/TetrisConsole.exe
+/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/obj/x86/Debug/TetrisConsole.pdb

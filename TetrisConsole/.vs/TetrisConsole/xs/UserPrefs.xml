@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{A6F3B34C-EFCD-4059-B2BE-CD243E5739E5}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TetrisConsole/Block.cs">
+    <Files>
+      <File FileName="TetrisConsole/Program.cs" Line="5" Column="25" />
+      <File FileName="TetrisConsole/Shape.cs" Line="9" Column="55" />
+      <File FileName="TetrisConsole/Shapes/IShape.cs" Line="17" Column="17" />
+      <File FileName="TetrisConsole/Shapes/LShape.cs" Line="19" Column="34" />
+      <File FileName="TetrisConsole/Shapes/NShape.cs" Line="8" Column="18" />
+      <File FileName="TetrisConsole/Shapes/QShape.cs" Line="19" Column="61" />
+      <File FileName="TetrisConsole/Shapes/TShape.cs" Line="22" Column="22" />
+      <File FileName="TetrisConsole/Block.cs" Line="10" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.TetrisConsole FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
