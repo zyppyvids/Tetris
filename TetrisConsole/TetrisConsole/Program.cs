@@ -50,12 +50,14 @@ namespace TetrisConsole
         {
             for (int y = 0; y < 20; y++)
             {
+                Console.Write("║");
                 for (int x = 0; x < 10; x++)
                 {
                     Console.Write(gameGrid[y, x] + " ");
                 }
-                Console.WriteLine();
+                Console.WriteLine("║");
             }
+            Console.WriteLine("╚"+ new string('═', 20) + "╝");
         }
 
         public static void AddNewShape()
