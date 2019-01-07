@@ -150,14 +150,36 @@ namespace TetrisConsole
             }
         }
 
+        public static bool BlockListContains(int x, int y)
+        {
+            try
+            {
+                foreach (Block block in blocks)
+                {
+                    if (block.X == x && block.Y == y) return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static bool CanMoveDown()
         {
             try
             {
-                foreach (Block block in currentTetrominoBlocks.Where(x => gameGrid[x.Y + 1, x.X] == ' ' || x.Y == currentTetrominoBlocks.Select(z => z.Y).Max()).ToList())
+                blocks.RemoveAll(x => currentTetrominoBlocks.Contains(x));
+                foreach (Block block in currentTetrominoBlocks)
                 {
-                    if (gameGrid[block.Y + 1, block.X] == Block.buildingSquare) return false;
+                    if (gameGrid[block.Y + 1, block.X] == Block.buildingSquare && BlockListContains(block.X, block.Y + 1))
+                    {
+                        blocks.AddRange(currentTetrominoBlocks);
+                        return false;
+                    }
                 }
+                blocks.AddRange(currentTetrominoBlocks);
                 return true;
             }
             catch

@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{A6F3B34C-EFCD-4059-B2BE-CD243E5739E5}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="TetrisConsole/Program.cs">
     <Files>
-      <File FileName="TetrisConsole/Program.cs" Line="44" Column="13" />
+      <File FileName="TetrisConsole/Program.cs" Line="190" Column="29" />
       <File FileName="TetrisConsole/Shape.cs" Line="19" Column="1" />
       <File FileName="TetrisConsole/Shapes/IShape.cs" Line="15" Column="16" />
       <File FileName="TetrisConsole/Shapes/LShape.cs" Line="15" Column="16" />
@@ -22,8 +22,6 @@
       <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Shapes/QShape.cs" relfile="TetrisConsole/Shapes/QShape.cs" line="15" column="1" />
       <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Shapes/TShape.cs" relfile="TetrisConsole/Shapes/TShape.cs" line="15" column="1" />
       <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Shape.cs" relfile="TetrisConsole/Shape.cs" line="13" column="1" />
-      <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Program.cs" relfile="TetrisConsole/Program.cs" line="181" column="1" />
-      <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Program.cs" relfile="TetrisConsole/Program.cs" line="186" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
