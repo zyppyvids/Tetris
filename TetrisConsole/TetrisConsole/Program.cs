@@ -34,6 +34,8 @@ namespace TetrisConsole
         public static List<Block> blocks = new List<Block>();
         public static List<Block> currentTetrominoBlocks = new List<Block>();
 
+        public static bool isSlow = true; //Bool for Thread.Sleep() Check
+
         public static void Main()
         {
             Initialise(); //Initialises the whole game
@@ -42,6 +44,7 @@ namespace TetrisConsole
 
         public static void Initialise()
         {
+            isSlow = true;
             Console.CursorVisible = false; //Hides the cursor
             Console.Title = "Console Tetris"; //Changes the title of the application window
             AddNewShape(); //Adds the first shape
@@ -170,16 +173,16 @@ namespace TetrisConsole
         {
             try
             {
-                blocks.RemoveAll(x => currentTetrominoBlocks.Contains(x));
+                blocks.RemoveAll(x => currentTetrominoBlocks.Contains(x)); //Removes current tetromino from blocks List
                 foreach (Block block in currentTetrominoBlocks)
                 {
                     if (gameGrid[block.Y + 1, block.X] == Block.buildingSquare && BlockListContains(block.X, block.Y + 1))
                     {
-                        blocks.AddRange(currentTetrominoBlocks);
+                        blocks.AddRange(currentTetrominoBlocks); //Adds current tetromino to blocks List
                         return false;
                     }
                 }
-                blocks.AddRange(currentTetrominoBlocks);
+                blocks.AddRange(currentTetrominoBlocks); //Adds current tetromino to blocks List
                 return true;
             }
             catch
@@ -192,7 +195,8 @@ namespace TetrisConsole
         {
             for (int i = 0; i < 20 - movingSteps; i++)
             {
-                Thread.Sleep(1000); //Puts the thread to sleep
+                if(isSlow)
+                    Thread.Sleep(1000); //Puts the thread to sleep if tetromino is slowed down
 
                 Console.Clear(); //Clears the console
 
@@ -232,6 +236,7 @@ namespace TetrisConsole
                                 block.X++;
                         }
                     }
+                    else isSlow &= keyInfo.Key != ConsoleKey.Spacebar;
                 }
 
                 UpdateGrid(); //Updates the grid with the new X and Y of the current Tetromino

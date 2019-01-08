@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TetrisConsole
 {
-    public class NShape
+    public class NShape : Shape
     {
         public NShape()
         {
@@ -32,6 +32,11 @@ namespace TetrisConsole
                     blocks.Add(new Block(4, y));
                 }
             }
+        }
+
+        public void Rotate()
+        {
+
         }
     }
 }

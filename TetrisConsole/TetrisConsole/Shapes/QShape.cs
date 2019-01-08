@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TetrisConsole
 {
-    public class QShape
+    public class QShape : Shape
     {
         public QShape()
         {
@@ -21,6 +21,11 @@ namespace TetrisConsole
                     blocks.Add(new Block(x, y));
                 }
             }
+        }
+
+        public void Rotate()
+        {
+
         }
     }
 }

@@ -40,6 +40,7 @@
     <Compile Include="Shapes\QShape.cs" />
     <Compile Include="Shapes\TShape.cs" />
     <Compile Include="Block.cs" />
+    <Compile Include="Shapes\Shape.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Shapes\" />

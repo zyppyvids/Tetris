@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TetrisConsole
 {
-    public class LShape
+    public class LShape : Shape
     {
         public LShape()
         {
@@ -22,6 +22,11 @@ namespace TetrisConsole
             {
                 blocks.Add(new Block(x, 2));
             }
+        }
+
+        public void Rotate()
+        {
+
         }
     }
 }

@@ -1,14 +1,15 @@
 ﻿<Properties StartupConfiguration="{A6F3B34C-EFCD-4059-B2BE-CD243E5739E5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="TetrisConsole/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TetrisConsole/Shapes/IShape.cs">
     <Files>
-      <File FileName="TetrisConsole/Program.cs" Line="190" Column="29" />
+      <File FileName="TetrisConsole/Program.cs" Line="252" Column="16" />
       <File FileName="TetrisConsole/Shape.cs" Line="19" Column="1" />
       <File FileName="TetrisConsole/Shapes/IShape.cs" Line="15" Column="16" />
       <File FileName="TetrisConsole/Shapes/LShape.cs" Line="15" Column="16" />
       <File FileName="TetrisConsole/Shapes/NShape.cs" Line="15" Column="15" />
       <File FileName="TetrisConsole/Shapes/QShape.cs" Line="15" Column="16" />
       <File FileName="TetrisConsole/Shapes/TShape.cs" Line="15" Column="16" />
-      <File FileName="TetrisConsole/Block.cs" Line="16" Column="23" />
+      <File FileName="TetrisConsole/Block.cs" Line="16" Column="47" />
+      <File FileName="TetrisConsole/Shapes/Shape.cs" Line="4" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.TetrisConsole PreferredExecutionTarget="MonoDevelop.Default" />
