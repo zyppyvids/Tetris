@@ -33,6 +33,7 @@ namespace TetrisConsole
         };
         public static List<Block> blocks = new List<Block>();
         public static List<Block> currentTetrominoBlocks = new List<Block>();
+        public static Shape currentShape;
 
         public static bool isSlow = true; //Bool for Thread.Sleep() Check
 
@@ -68,6 +69,9 @@ namespace TetrisConsole
 
         public static void AddNewShape()
         {
+            if (gameGrid[1, 4] == Block.buildingSquare || gameGrid[1, 5] == Block.buildingSquare || gameGrid[1, 6] == Block.buildingSquare)
+                GameOver();
+
             currentTetrominoBlocks = new List<Block>(); 
 
             char type = NewShapeType(); //Determines the type of the new shape
@@ -79,30 +83,35 @@ namespace TetrisConsole
                     ishape.Draw();
                     blocks.AddRange(ishape.blocks);
                     currentTetrominoBlocks.AddRange(ishape.blocks);
+                    currentShape = ishape;
                     break;
                 case 'L':
                     LShape lshape = new LShape();
                     lshape.Draw();
                     blocks.AddRange(lshape.blocks);
                     currentTetrominoBlocks.AddRange(lshape.blocks);
+                    currentShape = lshape;
                     break;
                 case 'N':
                     NShape nshape = new NShape();
                     nshape.Draw();
                     blocks.AddRange(nshape.blocks);
                     currentTetrominoBlocks.AddRange(nshape.blocks);
+                    currentShape = nshape;
                     break;
                 case 'Q':
                     QShape qshape = new QShape();
                     qshape.Draw();
                     blocks.AddRange(qshape.blocks);
                     currentTetrominoBlocks.AddRange(qshape.blocks);
+                    currentShape = qshape;
                     break;
                 case 'T':
                     TShape tshape = new TShape();
                     tshape.Draw();
                     blocks.AddRange(tshape.blocks);
                     currentTetrominoBlocks.AddRange(tshape.blocks);
+                    currentShape = tshape;
                     break;
                 default:
                     throw new InvalidOperationException("Problem with NewShapeType() Method!");
@@ -187,6 +196,53 @@ namespace TetrisConsole
             }
             catch
             {
+                blocks.AddRange(currentTetrominoBlocks); //Adds current tetromino to blocks List
+                return true;
+            }
+        }
+
+        public static bool CanMoveLeft()
+            {
+            try 
+            {
+                blocks.RemoveAll(x => currentTetrominoBlocks.Contains(x)); //Removes current tetromino from blocks List
+                foreach (Block block in currentTetrominoBlocks)
+                {
+                    if (gameGrid[block.Y, block.X - 1] == Block.buildingSquare && BlockListContains(block.X - 1, block.Y))
+                    {
+                        blocks.AddRange(currentTetrominoBlocks); //Adds current tetromino to blocks List
+                        return false;
+                    }
+                }
+                blocks.AddRange(currentTetrominoBlocks); //Adds current tetromino to blocks List
+                return true;
+            }
+            catch
+            {
+                blocks.AddRange(currentTetrominoBlocks); //Adds current tetromino to blocks List
+                return true;
+            }
+        }
+
+        public static bool CanMoveRight()
+        {
+            try
+            {
+                blocks.RemoveAll(x => currentTetrominoBlocks.Contains(x)); //Removes current tetromino from blocks List
+                foreach (Block block in currentTetrominoBlocks)
+                {
+                    if (gameGrid[block.Y, block.X + 1] == Block.buildingSquare && BlockListContains(block.X + 1, block.Y))
+                    {
+                        blocks.AddRange(currentTetrominoBlocks); //Adds current tetromino to blocks List
+                        return false;
+                    }
+                }
+                blocks.AddRange(currentTetrominoBlocks); //Adds current tetromino to blocks List
+                return true;
+            }
+            catch
+            {
+                blocks.AddRange(currentTetrominoBlocks); //Adds current tetromino to blocks List
                 return true;
             }
         }
@@ -196,7 +252,7 @@ namespace TetrisConsole
             for (int i = 0; i < 20 - movingSteps; i++)
             {
                 if(isSlow)
-                    Thread.Sleep(1000); //Puts the thread to sleep if tetromino is slowed down
+                    Thread.Sleep(500); //Puts the thread to sleep if tetromino is slowed down
 
                 Console.Clear(); //Clears the console
 
@@ -220,21 +276,31 @@ namespace TetrisConsole
                     ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                     if (keyInfo.Key == ConsoleKey.A)
                     {
-                        int lowestX = currentTetrominoBlocks.Select(x => x.X).Min(); //Gets the highest X value of all the Blocks of the current Tetromino
-                        foreach (Block block in currentTetrominoBlocks)
+                        if (CanMoveLeft())
                         {
-                            if (lowestX - 1 >= 0)
-                                block.X--;
+                            int lowestX = currentTetrominoBlocks.Select(x => x.X).Min(); //Gets the highest X value of all the Blocks of the current Tetromino
+                            foreach (Block block in currentTetrominoBlocks)
+                            {
+                                if (lowestX - 1 >= 0)
+                                    block.X--;
+                            }
                         }
                     }
                     else if (keyInfo.Key == ConsoleKey.D)
                     {
-                        int highestX = currentTetrominoBlocks.Select(x => x.X).Max(); //Gets the lowest X value of all the Blocks of the current Tetromino
-                        foreach (Block block in currentTetrominoBlocks)
+                        if (CanMoveRight())
                         {
-                            if(highestX + 1 < 10)
-                                block.X++;
+                            int highestX = currentTetrominoBlocks.Select(x => x.X).Max(); //Gets the lowest X value of all the Blocks of the current Tetromino
+                            foreach (Block block in currentTetrominoBlocks)
+                            {
+                                if (highestX + 1 < 10)
+                                    block.X++;
+                            }
                         }
+                    }
+                    else if (keyInfo.Key == ConsoleKey.R)
+                    {
+                        currentShape.Rotate();
                     }
                     else isSlow &= keyInfo.Key != ConsoleKey.Spacebar;
                 }
@@ -247,8 +313,22 @@ namespace TetrisConsole
             Loop(); //Goes on with the program
         }
 
+        public static void GameOver()
+        {
+            Console.Clear();
+            Console.WriteLine(@"
+   ____                                 ___                          _ 
+  / ___|   __ _   _ __ ___     ___     / _ \  __   __   ___   _ __  | |
+ | |  _   / _` | | '_ ` _ \   / _ \   | | | | \ \ / /  / _ \ | '__| | |
+ | |_| | | (_| | | | | | | | |  __/   | |_| |  \ V /  |  __/ | |    |_|
+  \____|  \__,_| |_| |_| |_|  \___|    \___/    \_/    \___| |_|    (_)
+                                                                       ");
+            Environment.Exit(0); //Exits the program with exit code 0
+        }
+
         public static void Loop()
         {
+            SystemSounds.Beep.Play();
             Console.Clear();
             Main();
         }
