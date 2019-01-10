@@ -23,29 +23,69 @@ namespace TetrisConsole
             }
         }
 
+        private bool CanRotateDown(int lowestX, int lowestY)
+        {
+            try
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (Program.gameGrid[lowestY + 1, lowestX] == Block.buildingSquare) return false;
+                    lowestY++;
+                }
+                return true;
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
+        private bool CanRotateLeft(int lowestX, int lowestY)
+        {
+            try
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (Program.gameGrid[lowestY, lowestX + 1] == Block.buildingSquare) return false;
+                    lowestX++;
+                }
+                return true;
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
         public void Rotate() 
         {
             int lowestX = blocks.Select(x => x.X).Min();
             int lowestY = blocks.Select(z => z.Y).Min();
-            if (rotation == "left")// && CanRotateDown(lowestX, lowestY))
+            if (rotation == "left")
             {
-                foreach (Block block in blocks)
+                if (CanRotateDown(lowestX, lowestY))
                 {
-                    block.X = lowestX;
-                    block.Y = lowestY;
-                    lowestY++;
+                    foreach (Block block in blocks)
+                    {
+                        block.X = lowestX;
+                        block.Y = lowestY;
+                        lowestY++;
+                    }
+                    rotation = "down";
                 }
-                rotation = "down";
             }
-            else if (rotation == "down")// && CanRotateLeft(lowestX, lowestY))
+            else if (rotation == "down")
             {
-                foreach (Block block in blocks)
+                if (CanRotateLeft(lowestX, lowestY))
                 {
-                    block.X = lowestX;
-                    block.Y = lowestY;
-                    lowestX++;
+                    foreach (Block block in blocks)
+                    {
+                        block.X = lowestX;
+                        block.Y = lowestY;
+                        lowestX++;
+                    }
+                    rotation = "left";
                 }
-                rotation = "left";
             }
             else throw new InvalidOperationException("Invalid 'Rotation' value!");
         }

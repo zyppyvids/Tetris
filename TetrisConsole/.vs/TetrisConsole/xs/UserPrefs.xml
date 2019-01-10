@@ -1,15 +1,15 @@
 ﻿<Properties StartupConfiguration="{A6F3B34C-EFCD-4059-B2BE-CD243E5739E5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="TetrisConsole/Shapes/IShape.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TetrisConsole/Program.cs">
     <Files>
-      <File FileName="TetrisConsole/Program.cs" Line="252" Column="16" />
+      <File FileName="TetrisConsole/Program.cs" Line="12" Column="11" />
       <File FileName="TetrisConsole/Shape.cs" Line="19" Column="1" />
-      <File FileName="TetrisConsole/Shapes/IShape.cs" Line="15" Column="16" />
+      <File FileName="TetrisConsole/Shapes/IShape.cs" Line="40" Column="43" />
       <File FileName="TetrisConsole/Shapes/LShape.cs" Line="15" Column="16" />
       <File FileName="TetrisConsole/Shapes/NShape.cs" Line="15" Column="15" />
       <File FileName="TetrisConsole/Shapes/QShape.cs" Line="15" Column="16" />
-      <File FileName="TetrisConsole/Shapes/TShape.cs" Line="15" Column="16" />
+      <File FileName="TetrisConsole/Shapes/TShape.cs" Line="35" Column="1" />
       <File FileName="TetrisConsole/Block.cs" Line="16" Column="47" />
-      <File FileName="TetrisConsole/Shapes/Shape.cs" Line="4" Column="23" />
+      <File FileName="TetrisConsole/Shapes/Shape.cs" Line="5" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.TetrisConsole PreferredExecutionTarget="MonoDevelop.Default" />
@@ -17,7 +17,7 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
-      <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Shapes/IShape.cs" relfile="TetrisConsole/Shapes/IShape.cs" line="15" column="1" />
+      <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Shapes/IShape.cs" relfile="TetrisConsole/Shapes/IShape.cs" line="18" column="1" />
       <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Shapes/LShape.cs" relfile="TetrisConsole/Shapes/LShape.cs" line="15" column="1" />
       <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Shapes/NShape.cs" relfile="TetrisConsole/Shapes/NShape.cs" line="15" column="1" />
       <Breakpoint file="/home/zyppyvids/Documents/OFFLINE REPOSITORY/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/Shapes/QShape.cs" relfile="TetrisConsole/Shapes/QShape.cs" line="15" column="1" />

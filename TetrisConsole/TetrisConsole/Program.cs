@@ -40,7 +40,7 @@ namespace TetrisConsole
         public static void Main()
         {
             Initialise(); //Initialises the whole game
-            Move(currentTetrominoBlocks.Select(x => x.Y).Max() + 1); //Starts the moving process
+            Move(); //Starts the moving process
         }
 
         public static void Initialise()
@@ -247,70 +247,82 @@ namespace TetrisConsole
             }
         }
 
-        public static void Move(int movingSteps)
+        public static void Move()
         {
-            for (int i = 0; i < 20 - movingSteps; i++)
+            try
             {
-                if(isSlow)
-                    Thread.Sleep(500); //Puts the thread to sleep if tetromino is slowed down
-
-                Console.Clear(); //Clears the console
-
-
-                if (CanMoveDown()) 
+                while(CanMoveDown())
                 {
-                    foreach (Block block in currentTetrominoBlocks)
-                    {
-                        gameGrid[block.Y, block.X] = ' ';
-                    }
+                    if (isSlow)
+                        Thread.Sleep(500); //Puts the thread to sleep if tetromino is slowed down
 
-                    foreach (Block block in currentTetrominoBlocks)
-                    {
-                        block.Y++;
-                    }
-                }
-                else Loop();
+                    Console.Clear(); //Clears the console
 
-                if (Console.KeyAvailable) //Checks for input and if there is moves the tetromino accordingly
-                {
-                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-                    if (keyInfo.Key == ConsoleKey.A)
+
+                    if (CanMoveDown())
                     {
-                        if (CanMoveLeft())
+                        foreach (Block block in currentTetrominoBlocks)
                         {
-                            int lowestX = currentTetrominoBlocks.Select(x => x.X).Min(); //Gets the highest X value of all the Blocks of the current Tetromino
-                            foreach (Block block in currentTetrominoBlocks)
-                            {
-                                if (lowestX - 1 >= 0)
-                                    block.X--;
-                            }
+                            gameGrid[block.Y, block.X] = ' ';
+                        }
+
+                        foreach (Block block in currentTetrominoBlocks)
+                        {
+                            block.Y++;
                         }
                     }
-                    else if (keyInfo.Key == ConsoleKey.D)
+                    else Loop();
+
+                    if (Console.KeyAvailable) //Checks for input and if there is moves the tetromino accordingly
                     {
-                        if (CanMoveRight())
+                        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                        if (keyInfo.Key == ConsoleKey.A)
                         {
-                            int highestX = currentTetrominoBlocks.Select(x => x.X).Max(); //Gets the lowest X value of all the Blocks of the current Tetromino
-                            foreach (Block block in currentTetrominoBlocks)
+                            if (CanMoveLeft())
                             {
-                                if (highestX + 1 < 10)
-                                    block.X++;
+                                int lowestX = currentTetrominoBlocks.Select(x => x.X).Min(); //Gets the highest X value of all the Blocks of the current Tetromino
+                                foreach (Block block in currentTetrominoBlocks)
+                                {
+                                    if (lowestX - 1 >= 0)
+                                        block.X--;
+                                }
                             }
                         }
+                        else if (keyInfo.Key == ConsoleKey.D)
+                        {
+                            if (CanMoveRight())
+                            {
+                                int highestX = currentTetrominoBlocks.Select(x => x.X).Max(); //Gets the lowest X value of all the Blocks of the current Tetromino
+                                foreach (Block block in currentTetrominoBlocks)
+                                {
+                                    if (highestX + 1 < 10)
+                                        block.X++;
+                                }
+                            }
+                        }
+                        else if (keyInfo.Key == ConsoleKey.R)
+                        {
+                            currentShape.Rotate();
+                        }
+                        else isSlow &= keyInfo.Key != ConsoleKey.Spacebar;
                     }
-                    else if (keyInfo.Key == ConsoleKey.R)
-                    {
-                        currentShape.Rotate();
-                    }
-                    else isSlow &= keyInfo.Key != ConsoleKey.Spacebar;
+
+                    UpdateGrid(); //Updates the grid with the new X and Y of the current Tetromino
+
+                    Draw(); //Draws the grid with the updated values
                 }
 
-                UpdateGrid(); //Updates the grid with the new X and Y of the current Tetromino
-
-                Draw(); //Draws the grid with the updated values
+                Loop(); //Goes on with the program
             }
-
-            Loop(); //Goes on with the program
+            catch
+            {
+                Console.Clear();
+                foreach (Block block in currentTetrominoBlocks)
+                {
+                    block.Y--;
+                }
+                Loop();
+            }
         }
 
         public static void GameOver()
