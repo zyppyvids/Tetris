@@ -35,6 +35,8 @@ namespace TetrisConsole
         public static List<Block> currentTetrominoBlocks = new List<Block>();
         public static Shape currentShape;
 
+        public static int Score;
+
         public static bool isSlow = true; //Bool for Thread.Sleep() Check
 
         public static void Main()
@@ -62,7 +64,32 @@ namespace TetrisConsole
                 {
                     Console.Write(gameGrid[y, x] + " ");
                 }
-                Console.WriteLine("║");
+                Console.Write("║");
+
+                switch (y) //Draws Controls
+                {
+                    case 0:
+                        Console.WriteLine(new string(' ', 5) + "Score: " + Score);
+                        break;
+                    case 1:
+                        Console.WriteLine(new string(' ', 5) + "-----CONTROLLS-----");
+                        break;
+                    case 2:
+                        Console.WriteLine(new string(' ', 9) + "R - Rotate");
+                        break;
+                    case 3:
+                        Console.WriteLine(new string(' ', 10) + "A - Left");
+                        break;
+                    case 4:
+                        Console.WriteLine(new string(' ', 10) + "D - Right");
+                        break;
+                    case 5:
+                        Console.WriteLine(new string(' ', 5) + "Space - Place Block");
+                        break;
+                    default:
+                        Console.WriteLine();
+                        break;
+                }
             }
             Console.WriteLine("╚"+ new string('═', 20) + "╝");
         }
@@ -182,6 +209,8 @@ namespace TetrisConsole
         {
             try
             {
+                if (currentTetrominoBlocks.Select(x => x.Y).Max() == 19) return false; //Checks if there are no other blocks bellow
+
                 blocks.RemoveAll(x => currentTetrominoBlocks.Contains(x)); //Removes current tetromino from blocks List
                 foreach (Block block in currentTetrominoBlocks)
                 {
@@ -276,35 +305,39 @@ namespace TetrisConsole
                     if (Console.KeyAvailable) //Checks for input and if there is moves the tetromino accordingly
                     {
                         ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-                        if (keyInfo.Key == ConsoleKey.A)
+                        switch (keyInfo.Key)
                         {
-                            if (CanMoveLeft())
-                            {
-                                int lowestX = currentTetrominoBlocks.Select(x => x.X).Min(); //Gets the highest X value of all the Blocks of the current Tetromino
-                                foreach (Block block in currentTetrominoBlocks)
+                            case ConsoleKey.A:
+                                if (CanMoveLeft())
                                 {
-                                    if (lowestX - 1 >= 0)
-                                        block.X--;
+                                    int lowestX = currentTetrominoBlocks.Select(x => x.X).Min(); //Gets the highest X value of all the Blocks of the current Tetromino
+                                    foreach (Block block in currentTetrominoBlocks)
+                                    {
+                                        if (lowestX - 1 >= 0)
+                                            block.X--;
+                                    }
                                 }
-                            }
-                        }
-                        else if (keyInfo.Key == ConsoleKey.D)
-                        {
-                            if (CanMoveRight())
-                            {
-                                int highestX = currentTetrominoBlocks.Select(x => x.X).Max(); //Gets the lowest X value of all the Blocks of the current Tetromino
-                                foreach (Block block in currentTetrominoBlocks)
+
+                                break;
+                            case ConsoleKey.D:
+                                if (CanMoveRight())
                                 {
-                                    if (highestX + 1 < 10)
-                                        block.X++;
+                                    int highestX = currentTetrominoBlocks.Select(x => x.X).Max(); //Gets the lowest X value of all the Blocks of the current Tetromino
+                                    foreach (Block block in currentTetrominoBlocks)
+                                    {
+                                        if (highestX + 1 < 10)
+                                            block.X++;
+                                    }
                                 }
-                            }
+
+                                break;
+                            case ConsoleKey.R:
+                                currentShape.Rotate();
+                                break;
+                            default:
+                                isSlow &= keyInfo.Key != ConsoleKey.Spacebar;
+                                break;
                         }
-                        else if (keyInfo.Key == ConsoleKey.R)
-                        {
-                            currentShape.Rotate();
-                        }
-                        else isSlow &= keyInfo.Key != ConsoleKey.Spacebar;
                     }
 
                     UpdateGrid(); //Updates the grid with the new X and Y of the current Tetromino
@@ -325,6 +358,40 @@ namespace TetrisConsole
             }
         }
 
+        public static void ClearLine()
+        {
+            bool lineIsFull = true;
+            for (int y = 0; y < 20; y++)
+            {
+                lineIsFull = true;
+                for (int x = 0; x < 10; x++)
+                {
+                    lineIsFull &= gameGrid[y, x] != ' ';
+                }
+                if (lineIsFull)
+                {
+                    for (int y1 = 0; y1 < 20; y1++)
+                    {
+                        for (int x1 = 0; x1 < 10; x1++)
+                        {
+                            gameGrid[y1, x1] = ' ';
+                        }
+                    }
+
+                    blocks.RemoveAll(x => x.Y == y);
+
+                    foreach (Block block in blocks.Where(x => x.Y < y))
+                    {
+                        block.Y++;
+                    }
+
+                    Score += 100;
+
+                    UpdateGrid();
+                }
+            }
+        }
+
         public static void GameOver()
         {
             Console.Clear();
@@ -342,6 +409,7 @@ namespace TetrisConsole
         {
             SystemSounds.Beep.Play();
             Console.Clear();
+            ClearLine(); //Clears Full Line
             Main();
         }
     }
