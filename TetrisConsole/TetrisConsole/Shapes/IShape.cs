@@ -36,7 +36,7 @@ namespace TetrisConsole
             }
             catch
             {
-                return true;
+                return false;
             }
         }
 
@@ -53,7 +53,7 @@ namespace TetrisConsole
             }
             catch
             {
-                return true;
+                return false;
             }
         }
 
