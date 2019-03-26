@@ -10,3 +10,10 @@
 /home/zyppyvids/Documents/oflRepo/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/obj/x86/Debug/TetrisConsole.csprojAssemblyReference.cache
 /home/zyppyvids/Documents/oflRepo/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/obj/x86/Debug/TetrisConsole.exe
 /home/zyppyvids/Documents/oflRepo/CSharp/PersonalProjects/TetrisConsole/TetrisConsole/obj/x86/Debug/TetrisConsole.pdb
+C:\Users\Emil Yordanov\Documents\oflRepo\Tetris\TetrisConsole\TetrisConsole\bin\Debug\TetrisConsole.exe.config
+C:\Users\Emil Yordanov\Documents\oflRepo\Tetris\TetrisConsole\TetrisConsole\bin\Debug\TetrisConsole.exe
+C:\Users\Emil Yordanov\Documents\oflRepo\Tetris\TetrisConsole\TetrisConsole\bin\Debug\TetrisConsole.pdb
+C:\Users\Emil Yordanov\Documents\oflRepo\Tetris\TetrisConsole\TetrisConsole\obj\x86\Debug\TetrisConsole.csprojAssemblyReference.cache
+C:\Users\Emil Yordanov\Documents\oflRepo\Tetris\TetrisConsole\TetrisConsole\obj\x86\Debug\TetrisConsole.csproj.CoreCompileInputs.cache
+C:\Users\Emil Yordanov\Documents\oflRepo\Tetris\TetrisConsole\TetrisConsole\obj\x86\Debug\TetrisConsole.exe
+C:\Users\Emil Yordanov\Documents\oflRepo\Tetris\TetrisConsole\TetrisConsole\obj\x86\Debug\TetrisConsole.pdb
